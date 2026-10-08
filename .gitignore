@@ -1,0 +1,38 @@
+# ---- 构建产物 ----
+build/
+
+# ---- Qt Creator 用户配置 ----
+.qtcreator/
+*.pro.user
+*.pro.user.*
+*.user
+
+# ---- 程序生成输出目录（运行后产生 PNG / PDF / DOCX）----
+generate_dir/
+generate_res/
+
+# ---- 编译中间文件 ----
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.exe
+*.dSYM
+
+# ---- Qt / 编译器生成 ----
+Makefile
+Makefile.*
+.qmake.stash
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.moc
+
+# ---- 系统 / 编辑器 ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

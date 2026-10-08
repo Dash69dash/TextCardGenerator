@@ -1,0 +1,10 @@
+# 统一换行符策略：文本文件入库时使用 LF，检出时按平台默认
+* text=auto
+
+# 明确指定源码使用 LF
+*.cpp text eol=lf
+*.h text eol=lf
+*.pro text eol=lf
+*.md text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
