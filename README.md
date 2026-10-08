@@ -1,6 +1,6 @@
 # 文字卡片生成器 (TextCardGenerator)
 
-黑底白字宋体风格的文字卡片生成工具，Qt 5.15 Widgets 项目（qmake 构建）。
+自定义风格的文字卡片生成工具，Qt 5.15 Widgets 项目（qmake 构建）。
 
 输入词条，一键生成可直接打印/裁剪的文字卡片，输出 PNG 图片与 Word (.docx) 文档。
 
