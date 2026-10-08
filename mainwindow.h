@@ -14,54 +14,58 @@
 #include <QStringList>
 #include <QColor>
 
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
-public:
-    explicit MainWindow(QWidget *parent = nullptr);
+class MainWindow : public QMainWindow {
+  Q_OBJECT
 
-private slots:
-    void onBrowse();
-    void onGenerate();
-    void onPickTextColor();
-    void onPickBgColor();
-    void onUpdatePreview();
-    void onSelectAll();
-    void onSelectNone();
+ public:
+  explicit MainWindow(QWidget *parent = nullptr);
 
-private:
-    QTextEdit     *m_inputEdit;
-    QLineEdit     *m_dirEdit;
-    QFontComboBox *m_fontCombo;
-    QSpinBox      *m_fontSpin;       // font pixel size
-    QSpinBox      *m_widthSpin;      // image width in px
-    QPushButton   *m_textColorBtn;
-    QPushButton   *m_bgColorBtn;
-    QCheckBox     *m_chkPng;
-    QCheckBox     *m_chkPdf;
-    QCheckBox     *m_chkDocx;
-    QComboBox    *m_orientCombo;
-    QLabel        *m_previewLabel;
-    QLabel        *m_statusLabel;
+ private slots:
+  void OnBrowse();
+  void OnGenerate();
+  void OnPickTextColor();
+  void OnPickBgColor();
+  void OnUpdatePreview();
+  void OnSelectAll();
+  void OnSelectNone();
 
-    QColor m_textColor;
-    QColor m_bgColor;
+ private:
+  QTextEdit *input_edit_;
+  QLineEdit *dir_edit_;
+  QFontComboBox *font_combo_;
+  QSpinBox *font_spin_;     // font pixel size
+  QSpinBox *width_spin_;    // image width in px
+  QPushButton *text_color_btn_;
+  QPushButton *bg_color_btn_;
+  QCheckBox *chk_png_;
+  QCheckBox *chk_pdf_;
+  QCheckBox *chk_docx_;
+  QComboBox *orient_combo_;
+  QSpinBox *pad_spin_;      // image inner padding in px
+  QSpinBox *margin_spin_;   // word page margin in mm
+  QLabel *preview_label_;
+  QLabel *status_label_;
 
-    QList<QImage> m_cards;
-    QStringList   m_cardNames;
+  QColor text_color_;
+  QColor bg_color_;
 
-    QImage renderCard(const QString &text);
-    QStringList splitText(const QString &text, int maxChars);
-    QString safeFileName(const QString &text);
+  QList<QImage> cards_;
+  QStringList card_names_;
 
-    void generatePdf(const QString &path);
-    void generateDocx(const QString &path);
+  QImage RenderCard(const QString &text);
+  QStringList SplitText(const QString &text, int max_chars);
+  QString SafeFileName(const QString &text);
 
-    bool writeZip(const QString &path, const QMap<QString, QByteArray> &files);
-    QByteArray makeLocalHeader(const QString &name, quint32 crc, quint32 size);
-    QByteArray makeCentralHeader(const QString &name, quint32 crc, quint32 size, quint32 localOffset);
-    QByteArray makeEocd(quint32 entryCount, quint32 cdSize, quint32 cdOffset);
-    quint32 crc32Of(const QByteArray &data);
+  void GeneratePdf(const QString &path);
+  void GenerateDocx(const QString &path);
+
+  bool WriteZip(const QString &path, const QMap<QString, QByteArray> &files);
+  QByteArray MakeLocalHeader(const QString &name, quint32 crc, quint32 size);
+  QByteArray MakeCentralHeader(const QString &name, quint32 crc, quint32 size,
+                               quint32 local_offset);
+  QByteArray MakeEocd(quint32 entry_count, quint32 central_directory_size,
+                      quint32 central_directory_offset);
+  quint32 Crc32Of(const QByteArray &data);
 };
 
-#endif // MAINWINDOW_H
+#endif  // MAINWINDOW_H
